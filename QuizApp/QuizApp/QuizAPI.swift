@@ -12,25 +12,17 @@ class QuizAPI: NSObject {
     
     func getCorrectAnswer(success: @escaping(_ response: QuizModel) -> Void, failure:@escaping(_ error:Error) -> Void) {
      
-        guard let url = URL(string: "https://codechallenge.arctouch.com/quiz/1") else { return }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            if error == nil {
+        let url = URL(string: "https://codechallenge.arctouch.com/quiz/1")
+        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
                 do {
-                    let response = try JSONSerialization.jsonObject(with: data!, options: []) as! QuizModel
-                    success(response)
+                    let jsonDecoder = JSONDecoder()
+                    let responseModel = try jsonDecoder.decode(QuizModel.self, from: data!)
+                    success(responseModel)
                 } catch {
                     failure(error)
                 }
             }
-            
-        }
         task.resume()
-
     }
     
     func parseJSON(data: Data) -> QuizModel? {

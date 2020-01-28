@@ -9,8 +9,6 @@
 import Foundation
 
 protocol InteractorProtocol {
-    func resetGame()
-    func startGame()
     func checkWord(answer: String)
     func fetchQuestion()
 }
@@ -32,14 +30,6 @@ class Interactor: InteractorProtocol {
         }, failure: { (_ error) in
            
         })
-    }
-    
-    func resetGame() {
-        
-    }
-    
-    func startGame() {
-        
     }
     
     func checkWord(answer: String) {

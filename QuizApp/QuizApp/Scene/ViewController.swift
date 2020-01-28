@@ -17,9 +17,8 @@ class ViewController: UIViewController, ViewControllerProtocol, UITableViewDeleg
     
     var interactor: InteractorProtocol?
     var words: [String] = []
-    var seconds = 60
+    var seconds = 300
     var timer = Timer()
-    var isTimerRunning = false /
     
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -33,22 +32,9 @@ class ViewController: UIViewController, ViewControllerProtocol, UITableViewDeleg
         interactor = Interactor(presenter: Presenter(viewController: self))
         
     }
-    @IBAction func resetGameTapped(_ sender: UIButton) {
-        interactor?.resetGame()
-        startButton.isHidden = false
-        resetButton.isHidden = true
-    }
     
     @IBAction func wordsTextInput(_ sender: UITextField) {
         interactor?.checkWord(answer: sender.text ?? "")
-    }
-    
-    
-    @IBAction func startGameTapped(_ sender: UIButton) {
-        interactor?.startGame()
-        startButton.isHidden = true
-        resetButton.isHidden = false
-        
     }
     
     func updateList(word: String) {
@@ -59,10 +45,21 @@ class ViewController: UIViewController, ViewControllerProtocol, UITableViewDeleg
     
     func updateCounter() {
         countAuxiliar.text = "\(words.count)"
+        if words.count == 50 {
+            self.displayAlert(title: "Congratulations", message: "Good Job! You found all the answers on time. Keep up with the great work.", action: "Play Again")
+        }
     }
     
-    func displayQuestion(question:String) {
+    func displayQuestion(question: String) {
         self.question.text = question
+    }
+    
+    private func displayAlert(title: String, message: String, action: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: action, style: .default, handler: { action in
+            self.reset()
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK -- Table View Delegate & Data Source
@@ -78,6 +75,48 @@ class ViewController: UIViewController, ViewControllerProtocol, UITableViewDeleg
             fatalError()
         }
     }
+    
+    //MARK -- Timer
+    func timeString(time: TimeInterval) -> String {
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+        
+        return String(format: "%02i:%02i", minutes, seconds)
+    }
+    
+    func runTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateTimer() {
+        if seconds == 0 {
+            timer.invalidate()
+            self.displayAlert(title: "Time finished", message: "Sorry, time is up! You got \(words.count) of 50 answers", action: "Try Again")
+        } else {
+            seconds -= 1
+            timerLabel.text = timeString(time: TimeInterval(seconds))
+        }
+    }
+    
+    @IBAction func resetGameTapped(_ sender: UIButton) {
+        startButton.isHidden = false
+        resetButton.isHidden = true
+        reset()
+    }
+    
+    @IBAction func startGameTapped(_ sender: UIButton) {
+        startButton.isHidden = true
+        resetButton.isHidden = false
+        runTimer()
+        
+    }
 
+    func reset() {
+        timer.invalidate()
+        seconds = 300
+        timerLabel.text = timeString(time: TimeInterval(seconds))
+        countAuxiliar.text = "00"
+        
+    }
 }
 
