@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="QuizApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="T9W-2d-yGA">
+                                <rect key="frame" x="16" y="88" width="382" height="646"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="298-CG-5Pl">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="79.5"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="What are all the java keyword?">
+                                                <attributes>
+                                                    <font key="NSFont" size="34" name="SFProDisplay-Bold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert word" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r51-yy-uUT">
+                                        <rect key="frame" x="0.0" y="87.5" width="382" height="62"/>
+                                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="wordsTextInput:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="Xa3-Lz-q7u"/>
+                                        </connections>
+                                    </textField>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="16f-ku-etE">
+                                        <rect key="frame" x="0.0" y="157.5" width="382" height="488.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="287" id="6Ru-XT-uvG"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="wordsList" id="KjV-Dd-Naj" customClass="WordsTableViewCell" customModule="QuizApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="382" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KjV-Dd-Naj" id="LtP-1u-ODE">
+                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqH-L1-21f">
+                                                            <rect key="frame" x="36" y="11" width="42" height="22"/>
+                                                            <attributedString key="attributedText">
+                                                                <fragment content="Label">
+                                                                    <attributes>
+                                                                        <font key="NSFont" size="17" name="SFProDisplay-Regular"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="uqH-L1-21f" secondAttribute="bottom" id="OgO-gD-6kt"/>
+                                                        <constraint firstItem="uqH-L1-21f" firstAttribute="top" secondItem="LtP-1u-ODE" secondAttribute="topMargin" id="hXS-uD-EPs"/>
+                                                        <constraint firstItem="uqH-L1-21f" firstAttribute="leading" secondItem="LtP-1u-ODE" secondAttribute="leadingMargin" constant="16" id="ylV-9o-UR4"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="word" destination="uqH-L1-21f" id="fx4-Tr-bZ3"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nAX-QX-eam">
+                                <rect key="frame" x="0.0" y="734" width="414" height="128"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Zte-uu-mx7">
+                                        <rect key="frame" x="16" y="16" width="382" height="96"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q2M-2G-TV9">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="40"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jub-aw-uuk">
+                                                        <rect key="frame" x="0.0" y="0.0" width="38" height="40"/>
+                                                        <attributedString key="attributedText">
+                                                            <fragment content="00">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="34" name="SFProDisplay-Bold"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tX0-X7-ydN">
+                                                        <rect key="frame" x="38" y="0.0" width="59" height="40"/>
+                                                        <attributedString key="attributedText">
+                                                            <fragment content="/ 50">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="34" name="SFProDisplay-Bold"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcP-Nc-L7R">
+                                                        <rect key="frame" x="97" y="0.0" width="285" height="40"/>
+                                                        <attributedString key="attributedText">
+                                                            <fragment content="05:00">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="34" name="SFProDisplay-Bold"/>
+                                                                    <font key="NSOriginalFont" size="34" name="SFProDisplay-Bold"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oPh-GN-C9c">
+                                                <rect key="frame" x="0.0" y="56" width="382" height="40"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tWI-wd-P2t">
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="40"/>
+                                                        <color key="backgroundColor" red="1" green="0.51372549019607838" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal">
+                                                            <attributedString key="attributedTitle">
+                                                                <fragment content="Start">
+                                                                    <attributes>
+                                                                        <font key="NSFont" size="17" name="SFProDisplay-Semibold"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="startGameTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NIs-Xl-n6V"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s8S-ew-pcA">
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="0.0"/>
+                                                        <color key="backgroundColor" red="1" green="0.51372549020000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal">
+                                                            <attributedString key="attributedTitle">
+                                                                <fragment content="Reset">
+                                                                    <attributes>
+                                                                        <font key="NSFont" size="17" name="SFProDisplay-Semibold"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="resetGameTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rr6-eO-Juz"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="oPh-GN-C9c" firstAttribute="leading" secondItem="Zte-uu-mx7" secondAttribute="leading" id="l0k-Af-e3B"/>
+                                            <constraint firstAttribute="trailing" secondItem="q2M-2G-TV9" secondAttribute="trailing" id="n26-EU-QiF"/>
+                                            <constraint firstItem="oPh-GN-C9c" firstAttribute="top" secondItem="q2M-2G-TV9" secondAttribute="bottom" constant="16" id="ql1-WU-d33"/>
+                                            <constraint firstAttribute="bottom" secondItem="oPh-GN-C9c" secondAttribute="bottom" id="vNI-Bt-l1N"/>
+                                            <constraint firstAttribute="trailing" secondItem="oPh-GN-C9c" secondAttribute="trailing" id="x4k-j8-32h"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Zte-uu-mx7" secondAttribute="trailing" constant="16" id="5lx-cu-SKO"/>
+                                    <constraint firstItem="Zte-uu-mx7" firstAttribute="top" secondItem="nAX-QX-eam" secondAttribute="top" constant="16" id="D6q-o1-36y"/>
+                                    <constraint firstAttribute="bottom" secondItem="Zte-uu-mx7" secondAttribute="bottom" constant="16" id="u08-ie-DPq"/>
+                                    <constraint firstItem="Zte-uu-mx7" firstAttribute="leading" secondItem="nAX-QX-eam" secondAttribute="leading" constant="16" id="xW0-LY-Nsw"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nAX-QX-eam" secondAttribute="bottom" id="Bf1-uO-4Fj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nAX-QX-eam" secondAttribute="trailing" id="Vmr-Ql-CdF"/>
+                            <constraint firstItem="T9W-2d-yGA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Yzd-mW-0XB"/>
+                            <constraint firstItem="nAX-QX-eam" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZsN-Iv-tpI"/>
+                            <constraint firstItem="nAX-QX-eam" firstAttribute="top" secondItem="T9W-2d-yGA" secondAttribute="bottom" id="atj-UJ-3aT"/>
+                            <constraint firstAttribute="trailing" secondItem="T9W-2d-yGA" secondAttribute="trailing" constant="16" id="kfc-AX-yAM"/>
+                            <constraint firstItem="T9W-2d-yGA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="44" id="nSc-J5-Mfe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="countAuxiliar" destination="jub-aw-uuk" id="c63-FX-GSK"/>
+                        <outlet property="question" destination="298-CG-5Pl" id="Jh5-9h-OAk"/>
+                        <outlet property="resetButton" destination="s8S-ew-pcA" id="1Bd-7t-4LP"/>
+                        <outlet property="startButton" destination="tWI-wd-P2t" id="ciU-4T-mVU"/>
+                        <outlet property="tableView" destination="16f-ku-etE" id="e9L-nc-cuW"/>
+                        <outlet property="timerLabel" destination="YcP-Nc-L7R" id="9eH-1t-4Ja"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="47.826086956521742" y="20.758928571428569"/>
+        </scene>
+    </scenes>
+</document>
