@@ -13,7 +13,7 @@ protocol ViewControllerProtocol: class {
     func displayQuestion(question: String)
 }
 
-class ViewController: UIViewController, ViewControllerProtocol, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, ViewControllerProtocol, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     var interactor: InteractorProtocol?
     var words: [String] = []
@@ -26,19 +26,24 @@ class ViewController: UIViewController, ViewControllerProtocol, UITableViewDeleg
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var insertWordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor = Interactor(presenter: Presenter(viewController: self))
+        tableView.register(WordsTableViewCell.self, forCellReuseIdentifier: "wordsList")
+        tableView.delegate = self
+        tableView.dataSource = self
+        insertWordTextField.delegate = self
+        insertWordTextField.resignFirstResponder()
         
     }
     
-    @IBAction func wordsTextInput(_ sender: UITextField) {
-        interactor?.checkWord(answer: sender.text ?? "")
-    }
-    
     func updateList(word: String) {
-        words.append(word)
+        if !words.contains(word) {
+            words.append(word)
+        }
+        insertWordTextField.text = ""
         updateCounter()
         tableView.reloadData()
     }
@@ -69,7 +74,9 @@ class ViewController: UIViewController, ViewControllerProtocol, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = self.tableView.dequeueReusableCell(withIdentifier: "wordsList", for: indexPath) as? WordsTableViewCell {
-            cell.word.text = words[indexPath.row]
+            if !words.isEmpty {
+                cell.prepare(with: words[indexPath.row])
+            }
             return cell
         } else {
             fatalError()
@@ -117,6 +124,28 @@ class ViewController: UIViewController, ViewControllerProtocol, UITableViewDeleg
         timerLabel.text = timeString(time: TimeInterval(seconds))
         countAuxiliar.text = "00"
         
+    }
+    
+    //MARK -- TextField Delegate
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if string == "\n" {
+            insertWordTextField.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        interactor?.checkWord(answer: textField.text ?? "")
+        
+    }
+    
+    @IBAction func wordsTextInput(_ sender: UITextField) {
+        textFieldDidEndEditing(sender)
     }
 }
 

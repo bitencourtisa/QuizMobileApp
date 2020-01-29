@@ -58,14 +58,8 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqH-L1-21f">
-                                                            <rect key="frame" x="36" y="11" width="42" height="22"/>
-                                                            <attributedString key="attributedText">
-                                                                <fragment content="Label">
-                                                                    <attributes>
-                                                                        <font key="NSFont" size="17" name="SFProDisplay-Regular"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                            </attributedString>
+                                                            <rect key="frame" x="36" y="11" width="0.0" height="22"/>
+                                                            <attributedString key="attributedText"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -76,7 +70,7 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="word" destination="uqH-L1-21f" id="fx4-Tr-bZ3"/>
+                                                    <outlet property="word" destination="uqH-L1-21f" id="8hD-qd-KkC"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -202,6 +196,7 @@
                     </view>
                     <connections>
                         <outlet property="countAuxiliar" destination="jub-aw-uuk" id="c63-FX-GSK"/>
+                        <outlet property="insertWordTextField" destination="r51-yy-uUT" id="GYz-FW-ps6"/>
                         <outlet property="question" destination="298-CG-5Pl" id="Jh5-9h-OAk"/>
                         <outlet property="resetButton" destination="s8S-ew-pcA" id="1Bd-7t-4LP"/>
                         <outlet property="startButton" destination="tWI-wd-P2t" id="ciU-4T-mVU"/>
