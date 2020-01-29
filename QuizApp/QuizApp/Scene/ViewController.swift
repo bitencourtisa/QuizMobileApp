@@ -50,6 +50,7 @@ class ViewController: UIViewController, ViewControllerProtocol, UITableViewDeleg
     func updateCounter() {
         countAuxiliar.text = "\(words.count) "
         if words.count == 50 {
+            timer.invalidate()
             self.displayAlert(title: "Congratulations", message: "Good Job! You found all the answers on time. Keep up with the great work.", action: "Play Again")
         }
     }
