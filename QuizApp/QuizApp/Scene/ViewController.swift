@@ -31,7 +31,7 @@ class ViewController: UIViewController, ViewControllerProtocol, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor = Interactor(presenter: Presenter(viewController: self))
-        tableView.register(WordsTableViewCell.self, forCellReuseIdentifier: "wordsList")
+        tableView.register(WordsTableViewCell.self, forCellReuseIdentifier: "answerList")
         tableView.delegate = self
         tableView.dataSource = self
         insertWordTextField.delegate = self
@@ -43,16 +43,19 @@ class ViewController: UIViewController, ViewControllerProtocol, UITableViewDeleg
         if !words.contains(word) {
             words.append(word)
         }
-        insertWordTextField.text = ""
         updateCounter()
         tableView.reloadData()
     }
     
     func updateCounter() {
-        countAuxiliar.text = "\(words.count)"
+        countAuxiliar.text = "\(words.count) "
         if words.count == 50 {
             self.displayAlert(title: "Congratulations", message: "Good Job! You found all the answers on time. Keep up with the great work.", action: "Play Again")
         }
+    }
+    
+    func reload() {
+        tableView.reloadData()
     }
     
     func displayQuestion(question: String) {
@@ -72,18 +75,31 @@ class ViewController: UIViewController, ViewControllerProtocol, UITableViewDeleg
         return words.count
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44.0;//Choose your custom row height
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = self.tableView.dequeueReusableCell(withIdentifier: "wordsList", for: indexPath) as? WordsTableViewCell {
-            if !words.isEmpty {
-                cell.prepare(with: words[indexPath.row])
-            }
+        if let cell = self.tableView.dequeueReusableCell(withIdentifier: "answerList", for: indexPath) as? WordsTableViewCell {
+
+            let label = UILabel()
+            label.frame = CGRect(x: 10, y: 10, width: 160, height: 30)
+            label.text = words[indexPath.row]
+            cell.contentView.addSubview(label)
+            
             return cell
+            
         } else {
             fatalError()
         }
     }
     
     //MARK -- Timer
+    
     func timeString(time: TimeInterval) -> String {
         let minutes = Int(time) / 60 % 60
         let seconds = Int(time) % 60
@@ -108,12 +124,14 @@ class ViewController: UIViewController, ViewControllerProtocol, UITableViewDeleg
     @IBAction func resetGameTapped(_ sender: UIButton) {
         startButton.isHidden = false
         resetButton.isHidden = true
+        insertWordTextField.isEnabled = false
         reset()
     }
     
     @IBAction func startGameTapped(_ sender: UIButton) {
         startButton.isHidden = true
         resetButton.isHidden = false
+        insertWordTextField.isEnabled = true
         runTimer()
         
     }
@@ -123,6 +141,8 @@ class ViewController: UIViewController, ViewControllerProtocol, UITableViewDeleg
         seconds = 300
         timerLabel.text = timeString(time: TimeInterval(seconds))
         countAuxiliar.text = "00"
+        words = []
+        tableView.reloadData()
         
     }
     
@@ -141,6 +161,7 @@ class ViewController: UIViewController, ViewControllerProtocol, UITableViewDeleg
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         interactor?.checkWord(answer: textField.text ?? "")
+        insertWordTextField.text = ""
         
     }
     
